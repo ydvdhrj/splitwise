@@ -1,65 +1,81 @@
-# Splitwise Clone
+# Splitwise Expense Tracking App
 
-## Overview
 A web application for tracking and splitting expenses among friends and groups.
 
 ## Features
-- User Registration and Authentication
-- Create and Manage Groups
-- Add Expenses
-- View Group Expenses
-- Track Personal Balances
+
+- User Authentication (Register/Login)
+- Create and Join Groups
+- Add and Track Expenses
+- Split Bills Among Group Members
+- View Expense History
+- Modern, Responsive UI
 
 ## Tech Stack
-- Backend: Flask
-- Database: SQLAlchemy (SQLite)
-- Frontend: Bootstrap
-- Authentication: Flask-Login
 
-## Setup and Installation
+- Backend: Flask 2.3.3
+- Database: PostgreSQL (Neon)
+- ORM: SQLAlchemy 2.0.23
+- Authentication: Flask-Login 0.6.3
+- Frontend: Bootstrap 5, Custom CSS
+- Deployment: Render.com
 
-1. Clone the repository
+## Local Development
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/splitwise-clone.git
-cd splitwise-clone
+git clone <your-repo-url>
+cd splitwise
 ```
 
-2. Create a virtual environment
+2. Create a virtual environment and install dependencies:
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-```
-
-3. Install dependencies
-```bash
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Initialize the database
-```bash
-flask db upgrade
+3. Set up environment variables in `.env`:
 ```
-
-5. Run the application
-```bash
-flask run
-```
-
-## Environment Variables
-Create a `.env` file with the following:
-```
-SECRET_KEY=your_secret_key
-DATABASE_URL=sqlite:///splitwise.db
 FLASK_APP=app.py
 FLASK_ENV=development
+FLASK_DEBUG=1
+SECRET_KEY=your_secret_key
+DATABASE_URL=your_database_url
 ```
 
-## Contributing
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+4. Run the application:
+```bash
+python app.py
+```
 
-## License
-Distributed under the MIT License. See `LICENSE` for more information.
+## Deployment
+
+This application is configured for deployment on Render.com:
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Configure the following:
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `gunicorn app:app`
+   - Environment Variables:
+     * SECRET_KEY
+     * DATABASE_URL
+     * FLASK_APP=app.py
+     * FLASK_ENV=production
+
+## Database
+
+The application uses Neon PostgreSQL as the database. To set up:
+
+1. Create a Neon account and database
+2. Get your connection string
+3. Add it to your environment variables as DATABASE_URL
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
